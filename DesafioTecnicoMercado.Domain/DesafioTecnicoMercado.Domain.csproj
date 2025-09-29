@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Response\" />
-    <Folder Include="Dtos\Request\" />
-    <Folder Include="Interfaces\Repositories\" />
-    <Folder Include="Interfaces\Services\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.0.0" />
   </ItemGroup>
 
