@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnicoMercado.API", "DesafioTecnicoMercado.API\DesafioTecnicoMercado.API.csproj", "{E96BF48D-8E59-45D6-AE20-C8A36C3DF7DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AF8A0C27-9AF5-4A11-93E0-95F6400CD9F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{A61D7C4D-1C96-4345-B494-EDCB47A6FE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnicoMercado.Domain", "DesafioTecnicoMercado.Domain\DesafioTecnicoMercado.Domain.csproj", "{21305AEA-72F6-4CD9-9BFC-D76CBB1187C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioTecnicoMercado.Infra", "DesafioTecnicoMercado.Infra\DesafioTecnicoMercado.Infra.csproj", "{D4CF640B-FC50-49A1-B48F-6E2DBB994C94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E96BF48D-8E59-45D6-AE20-C8A36C3DF7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E96BF48D-8E59-45D6-AE20-C8A36C3DF7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E96BF48D-8E59-45D6-AE20-C8A36C3DF7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E96BF48D-8E59-45D6-AE20-C8A36C3DF7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21305AEA-72F6-4CD9-9BFC-D76CBB1187C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21305AEA-72F6-4CD9-9BFC-D76CBB1187C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21305AEA-72F6-4CD9-9BFC-D76CBB1187C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21305AEA-72F6-4CD9-9BFC-D76CBB1187C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4CF640B-FC50-49A1-B48F-6E2DBB994C94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4CF640B-FC50-49A1-B48F-6E2DBB994C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4CF640B-FC50-49A1-B48F-6E2DBB994C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4CF640B-FC50-49A1-B48F-6E2DBB994C94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E96BF48D-8E59-45D6-AE20-C8A36C3DF7DE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{21305AEA-72F6-4CD9-9BFC-D76CBB1187C9} = {AF8A0C27-9AF5-4A11-93E0-95F6400CD9F2}
+		{D4CF640B-FC50-49A1-B48F-6E2DBB994C94} = {A61D7C4D-1C96-4345-B494-EDCB47A6FE46}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75C0D985-3CED-4E8B-B495-DB47E02DEA13}
+	EndGlobalSection
+EndGlobal
