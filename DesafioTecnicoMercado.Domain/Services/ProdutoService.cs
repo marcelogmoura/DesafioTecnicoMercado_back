@@ -4,41 +4,26 @@ using DesafioTecnicoMercado.Domain.Entities;
 using DesafioTecnicoMercado.Domain.Interfaces.Repositories;
 using DesafioTecnicoMercado.Domain.Interfaces.Services;
 using DesafioTecnicoMercado.Domain.Validations;
-using FluentValidation;
-using System.ComponentModel.DataAnnotations;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using FluentValidation;  
 
 namespace DesafioTecnicoMercado.Domain.Services
-{
-    public class ProdutoService : IProdutoService
+{   
+    public class ProdutoService(
+        IProdutoRepository produtoRepository,
+        ICategoriaRepository categoriaRepository,
+        ProdutoValidator validator
+    ) : IProdutoService
     {
-        private readonly IProdutoRepository _produtoRepository;
-        private readonly ICategoriaRepository _categoriaRepository;
-        private readonly ProdutoValidator _validator;
-
-        public ProdutoService(IProdutoRepository _produtoRepository, 
-            ICategoriaRepository _categoriaRepository, 
-            ProdutoValidator _validator)
-        {
-            _produtoRepository = _produtoRepository;
-            _categoriaRepository = _categoriaRepository;
-            _validator = _validator;
-        }
-
         public ProdutoResponseDto CadastrarProduto(ProdutoRequestDto dto)
         {
-            var categoria = _categoriaRepository.GetById(dto.CategoriaId);
-
-            if(categoria == null)
+            
+            var categoria = categoriaRepository.GetById(dto.CategoriaId);
+            if (categoria == null)
             {
-                throw new DomainValidationException("Categoria não encontrada.");
+                throw new DomainValidationException("Categoria não encontrada. Verifique o ID informado.");
             }
 
-            if(_produtoRepository.GetByNome(dto.Nome))
-            {
-                throw new DomainValidationException($"Já existe um produto com o nome '{dto.Nome}' cadastrado.");
-            }
-
+          
             var produto = new Produto(
                 nome: dto.Nome,
                 preco: dto.Preco,
@@ -46,61 +31,86 @@ namespace DesafioTecnicoMercado.Domain.Services
                 categoriaId: dto.CategoriaId
             );
 
+          
+            var validationResult = validator.Validate(produto);
+            if (!validationResult.IsValid)
+            {
+          
+                throw new ValidationException(validationResult.Errors);
+            }
 
+          
+            if (produtoRepository.GetByNome(produto.Nome, null)) 
+            {
+                throw new DomainValidationException($"Já existe um produto com o nome '{produto.Nome}' cadastrado.");
+            }
 
-            _produtoRepository.Add(produto);
+            
+            produtoRepository.Add(produto);
 
-            var responseDto = new ProdutoResponseDto
+            
+            return new ProdutoResponseDto
             {
                 Id = produto.Id,
-                Nome = produto.Nome,
+                Nome = produto.Nome ?? string.Empty,
                 Preco = produto.Preco,
                 QuantidadeEmEstoque = produto.QuantidadeEmEstoque,
-                CategoriaId = produto.CategoriaId,                
-                CategoriaNome = categoria.Nome
+                CategoriaId = produto.CategoriaId,
+                CategoriaNome = categoria.Nome 
             };
-
-            return responseDto;
-
         }
 
-        public ProdutoResponseDto Update(Guid id, ProdutoRequestDto dto)
+        public ProdutoResponseDto AtualizarProduto(Guid id, ProdutoRequestDto dto)
         {
             throw new NotImplementedException();
         }
 
-        public List<ProdutoResponseDto> GetAll()
+        public List<ProdutoResponseDto> ListarProdutos()
         {
-            var produtos = _produtoRepository.GetAll();
+            var produtos = produtoRepository.GetAll();
 
-            if(produtos == null || !produtos.Any())
-            {
+            if (produtos == null)
                 throw new DomainValidationException("Nenhum produto cadastrado.");
-            }
 
-            var responseList = produtos.Select(p => new ProdutoResponseDto
+            var responseList = produtos.Select(produto =>
             {
-                Id = p.Id,
-                Nome = p.Nome,
-                Preco = p.Preco,
-                QuantidadeEmEstoque = p.QuantidadeEmEstoque,
-                CategoriaId = p.CategoriaId,
-                CategoriaNome = p.Categoria?.Nome ?? "N/D"
+                var categoria = categoriaRepository.GetById(produto.CategoriaId);
+                return new ProdutoResponseDto
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome ?? string.Empty,
+                    Preco = produto.Preco,
+                    QuantidadeEmEstoque = produto.QuantidadeEmEstoque,
+                    CategoriaId = produto.CategoriaId,
+                    CategoriaNome = categoria?.Nome ?? "Categoria não encontrada"
+                };
             }).ToList();
 
             return responseList;
+
         }
 
-        public ProdutoResponseDto GetById(Guid id)
+        public ProdutoResponseDto ObterProdutoPorId(Guid id)
+        {
+            var produto = produtoRepository.GetById(id);
+
+            if(produto == null)
+                throw new DomainValidationException("Produto não encontrado. Verifique o ID informado.");
+
+            return new ProdutoResponseDto
+            {
+                Id = produto.Id,
+                Nome = produto.Nome ?? string.Empty,
+                Preco = produto.Preco,
+                QuantidadeEmEstoque = produto.QuantidadeEmEstoque,
+                CategoriaId = produto.CategoriaId,
+                CategoriaNome = categoriaRepository.GetById(produto.CategoriaId)?.Nome ?? "Categoria não encontrada"
+            };
+        }
+
+        public void ExcluirProduto(Guid id)
         {
             throw new NotImplementedException();
         }
-
-        public void Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-
     }
 }

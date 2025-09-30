@@ -13,4 +13,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DesafioTecnicoMercado.Domain\DesafioTecnicoMercado.Domain.csproj" />
+    <ProjectReference Include="..\DesafioTecnicoMercado.Infra\DesafioTecnicoMercado.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
