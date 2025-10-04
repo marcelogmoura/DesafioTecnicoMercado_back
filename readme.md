@@ -6,7 +6,13 @@
 
 Este projeto é a implementação de uma API RESTful para um sistema de gerenciamento de produtos de supermercado. O objetivo foi criar um CRUD (Create, Read, Update, Delete) completo, seguindo as regras de negócio especificadas, com uma arquitetura em camadas e boas práticas de desenvolvimento.
 
-O sistema foi desenvolvido como parte de um desafio técnico prático para um processo seletivo.
+O sistema foi desenvolvido como parte de um desafio técnico prático para um processo seletivo que peguei para estudar.
+
+## 📋 Requisitos e Documentação
+
+Os requisitos completos do teste técnico (prova) estão detalhados no documento oficial:
+* **[DesafioTecnicoMercado.pdf](https://github.com/marcelogmoura/DesafioTecnicoMercado_back/blob/main/Pdf/DesafioTecnicoMercado.pdf)**
+
 
 ## Funcionalidades
 
