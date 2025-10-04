@@ -127,5 +127,6 @@ A seguir, a lista de endpoints disponíveis para gerenciar os produtos:
 👨‍💻 **Autor:** Marcelo Moura 
 
 📧 **Email:** [mgmoura@gmail.com](mailto:mgmoura@gmail.com)   
+📧 **Email:** [admin@allriders.com.br](mailto:admin@allriders.com.br)   
 🐱 **GitHub:** [github.com/marcelogmoura](https://github.com/marcelogmoura)   
 🔗 **LinkedIn:** [linkedin.com/in/marcelogmoura](https://www.linkedin.com/in/marcelogmoura/)   
