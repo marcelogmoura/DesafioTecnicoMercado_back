@@ -1,65 +1,69 @@
-# Desafio Técnico Mercado - Backend
+# Desafio TÃ©cnico Mercado - Backend
 
-Este projeto é a implementação de uma API RESTful para um sistema de gerenciamento de produtos de supermercado. O objetivo foi criar um CRUD (Create, Read, Update, Delete) completo, seguindo as regras de negócio especificadas, com uma arquitetura em camadas e boas práticas de desenvolvimento.
+![.NET](https://img.shields.io/badge/.NET-9.0-blueviolet)
+![Database](https://img.shields.io/badge/SQL_Server-EC1B24?style=flat&logo=microsoftsqlserver&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-O sistema foi desenvolvido como parte de um desafio técnico prático para um processo seletivo.
+Este projeto Ã© a implementaÃ§Ã£o de uma API RESTful para um sistema de gerenciamento de produtos de supermercado. O objetivo foi criar um CRUD (Create, Read, Update, Delete) completo, seguindo as regras de negÃ³cio especificadas, com uma arquitetura em camadas e boas prÃ¡ticas de desenvolvimento.
+
+O sistema foi desenvolvido como parte de um desafio tÃ©cnico prÃ¡tico para um processo seletivo.
 
 ## Funcionalidades
 
--   ? **Cadastro de Produtos:** Permite criar novos produtos com nome, preço, estoque e categoria.
--   ? **Listagem de Produtos:** Rota para visualizar todos os produtos cadastrados e seus detalhes.
--   ? **Atualização de Produtos:** Permite editar as informações de um produto existente.
--   ? **Exclusão de Produtos:** Permite remover um produto, com validação de estoque.
--   ? **Documentação da API:** A API é autodocumentada utilizando Swagger (OpenAPI).
+-   âœ… **Cadastro de Produtos:** Permite criar novos produtos com nome, preÃ§o, estoque e categoria.
+-   âœ… **Listagem de Produtos:** Rota para visualizar todos os produtos cadastrados e seus detalhes.
+-   âœ… **AtualizaÃ§Ã£o de Produtos:** Permite editar as informaÃ§Ãµes de um produto existente.
+-   âœ… **ExclusÃ£o de Produtos:** Permite remover um produto, com validaÃ§Ã£o de estoque.
+-   âœ… **DocumentaÃ§Ã£o da API:** A API Ã© autodocumentada utilizando Swagger (OpenAPI).
 
-## Regras de Negócio Implementadas
+## Regras de NegÃ³cio Implementadas
 
-O sistema segue as seguintes regras de negócio para garantir a consistência dos dados:
+O sistema segue as seguintes regras de negÃ³cio para garantir a consistÃªncia dos dados:
 
-1.  **Nome Único:** Não é permitido cadastrar produtos com o mesmo nome. A validação é feita de forma *case-insensitive*.
-2.  **Exclusão com Estoque:** Um produto só pode ser excluído se a sua quantidade em estoque for igual a zero.
-3.  **Preço Não Negativo:** O preço de um produto não pode ser um valor negativo.
-4.  **Categoria Obrigatória:** É obrigatório associar uma categoria a qualquer produto, tanto no cadastro quanto na edição.
+1.  **Nome Ãšnico:** NÃ£o Ã© permitido cadastrar produtos com o mesmo nome. A validaÃ§Ã£o Ã© feita de forma *case-insensitive*.
+2.  **ExclusÃ£o com Estoque:** Um produto sÃ³ pode ser excluÃ­do se a sua quantidade em estoque for igual a zero.
+3.  **PreÃ§o NÃ£o Negativo:** O preÃ§o de um produto nÃ£o pode ser um valor negativo.
+4.  **Categoria ObrigatÃ³ria:** Ã‰ obrigatÃ³rio associar uma categoria a qualquer produto, tanto no cadastro quanto na ediÃ§Ã£o.
 
 ## Tecnologias Utilizadas
 
--   **.NET 9**: Framework principal para a construção da API.
--   **Entity Framework Core 9**: ORM para a comunicação com o banco de dados.
--   **SQL Server**: Banco de dados relacional para persistência dos dados.
--   **Swagger (Swashbuckle)**: Ferramenta para documentação interativa da API.
--   **FluentValidation**: Biblioteca para criar validações robustas e desacopladas das entidades.
--   **Docker e Docker Compose**: Para containerização da aplicação e do banco de dados.
+-   **.NET 9**: Framework principal para a construÃ§Ã£o da API.
+-   **Entity Framework Core 9**: ORM para a comunicaÃ§Ã£o com o banco de dados.
+-   **SQL Server**: Banco de dados relacional para persistÃªncia dos dados.
+-   **Swagger (Swashbuckle)**: Ferramenta para documentaÃ§Ã£o interativa da API.
+-   **FluentValidation**: Biblioteca para criar validaÃ§Ãµes robustas e desacopladas das entidades.
+-   **Docker e Docker Compose**: Para containerizaÃ§Ã£o da aplicaÃ§Ã£o e do banco de dados.
 
-## Pré-requisitos
+## PrÃ©-requisitos
 
 -   [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
--   [Docker](https://www.docker.com/products/docker-desktop/) e [Docker Compose](https://docs.docker.com/compose/install/) (para execução via container)
+-   [Docker](https://www.docker.com/products/docker-desktop/) e [Docker Compose](https://docs.docker.com/compose/install/) (para execuÃ§Ã£o via container)
 -   Um cliente de API, como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/), ou usar a interface do Swagger.
 
 ## Como Executar o Projeto
 
 ### 1. Usando Docker (Recomendado)
 
-O Docker simplifica a configuração do ambiente, incluindo o banco de dados.
+O Docker simplifica a configuraÃ§Ã£o do ambiente, incluindo o banco de dados.
 
-1.  **Clone o repositório:**
+1.  **Clone o repositÃ³rio:**
     ```bash
-    git clone [https://github.com/seu-usuario/DesafioTecnicoMercado_back.git](https://github.com/seu-usuario/DesafioTecnicoMercado_back.git)
+    git clone [https://github.com/marcelogmoura/DesafioTecnicoMercado_back.git](https://github.com/marcelogmoura/DesafioTecnicoMercado_back.git)
     cd DesafioTecnicoMercado_back
     ```
 
-2.  **Edite o arquivo `docker-compose.yml` (se necessário):**
-    Ajuste a senha do SQL Server na variável de ambiente `SA_PASSWORD` para uma senha mais segura. Lembre-se de atualizar a `ConnectionString` no `appsettings.json` se mudar outros parâmetros.
+2.  **Edite o arquivo `docker-compose.yml` (se necessÃ¡rio):**
+    Ajuste a senha do SQL Server na variÃ¡vel de ambiente `SA_PASSWORD` para uma senha mais segura. Lembre-se de atualizar a `ConnectionString` no `appsettings.json` se mudar outros parÃ¢metros.
 
 3.  **Construa e inicie os containers:**
-    Este comando irá baixar as imagens, construir a aplicação e iniciar os serviços em background.
+    Este comando irÃ¡ baixar as imagens, construir a aplicaÃ§Ã£o e iniciar os serviÃ§os em background.
     ```bash
     docker-compose up --build -d
     ```
 
 4.  **Acesse a API:**
-    A aplicação estará disponível em `http://localhost:5055`.
-    A documentação do Swagger pode ser acessada em:
+    A aplicaÃ§Ã£o estarÃ¡ disponÃ­vel em `http://localhost:5055`.
+    A documentaÃ§Ã£o do Swagger pode ser acessada em:
     [http://localhost:5055/swagger/index.html](http://localhost:5055/swagger/index.html)
 
 5.  **Para parar os containers:**
@@ -69,58 +73,60 @@ O Docker simplifica a configuração do ambiente, incluindo o banco de dados.
 
 ### 2. Rodando Localmente
 
-Para executar o projeto diretamente na sua máquina, sem Docker.
+Para executar o projeto diretamente na sua mÃ¡quina, sem Docker.
 
-1.  **Clone o repositório:** (mesmo passo anterior)
+1.  **Clone o repositÃ³rio.**
 
 2.  **Configure o Banco de Dados:**
-    A string de conexão padrão no arquivo `DesafioTecnicoMercado.Infra/Contexts/DataContext.cs` está configurada para usar o LocalDB do SQL Server.
+    A string de conexÃ£o padrÃ£o no arquivo `DesafioTecnicoMercado.Infra/Contexts/DataContext.cs` estÃ¡ configurada para usar o LocalDB do SQL Server.
     ```csharp
     optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BDMercado;Integrated Security=True;");
     ```
-    Certifique-se de que você tem o SQL Server ou LocalDB instalado.
+    Certifique-se de que vocÃª tem o SQL Server ou LocalDB instalado.
 
 3.  **Aplique as Migrations:**
-    Navegue até o diretório do projeto de infraestrutura e execute o comando para criar o banco de dados e as tabelas.
+    Navegue atÃ© o diretÃ³rio do projeto de infraestrutura e execute o comando para criar o banco de dados e as tabelas.
     ```bash
     cd DesafioTecnicoMercado.Infra
     dotnet ef database update
     ```
 
 4.  **Execute a API:**
-    Volte para a pasta do projeto da API e inicie a aplicação.
+    Volte para a pasta do projeto da API e inicie a aplicaÃ§Ã£o.
     ```bash
     cd ../DesafioTecnicoMercado.API
     dotnet run
     ```
 
 5.  **Acesse a API:**
-    A aplicação estará disponível em `http://localhost:5055` e o Swagger em [http://localhost:5055/swagger/index.html](http://localhost:5055/swagger/index.html).
+    A aplicaÃ§Ã£o estarÃ¡ disponÃ­vel em `http://localhost:5055` e o Swagger em [http://localhost:5055/swagger/index.html](http://localhost:5055/swagger/index.html).
 
 ## Estrutura do Projeto
 
 O projeto utiliza uma arquitetura em camadas para separar as responsabilidades:
 
--   ?? **`DesafioTecnicoMercado.Domain`**: Contém as entidades de negócio, DTOs (Data Transfer Objects), interfaces de repositórios e serviços, e as validações do FluentValidation.
--   ?? **`DesafioTecnicoMercado.Infra`**: Camada de acesso a dados, com as implementações dos repositórios usando Entity Framework Core, o `DataContext` e as configurações de mapeamento das tabelas.
--   ?? **`DesafioTecnicoMercado.API`**: A camada de apresentação, responsável por expor os endpoints da API. Contém os controladores, configuração de injeção de dependência e middleware.
+-   **DesafioTecnicoMercado.Domain**: ContÃ©m as entidades de negÃ³cio, DTOs (Data Transfer Objects), interfaces de repositÃ³rios e serviÃ§os, e as validaÃ§Ãµes do FluentValidation.
+-   **DesafioTecnicoMercado.Infra**: Camada de acesso a dados, com as implementaÃ§Ãµes dos repositÃ³rios usando Entity Framework Core, o `DataContext` e as configuraÃ§Ãµes de mapeamento das tabelas.
+-   **DesafioTecnicoMercado.API**: A camada de apresentaÃ§Ã£o, responsÃ¡vel por expor os endpoints da API. ContÃ©m os controladores, configuraÃ§Ã£o de injeÃ§Ã£o de dependÃªncia e middleware.
 
 ## Endpoints da API
 
-A seguir, a lista de endpoints disponíveis para gerenciar os produtos:
+A seguir, a lista de endpoints disponÃ­veis para gerenciar os produtos:
 
-| Verbo  | Rota                  | Descrição                                         |
+| Verbo  | Rota                  | DescriÃ§Ã£o                                         |
 | :----- | :-------------------- | :------------------------------------------------ |
 | `POST` | `/api/Produtos`       | Cadastra um novo produto.                         |
 | `GET`  | `/api/Produtos`       | Lista todos os produtos cadastrados.              |
-| `GET`  | `/api/Produtos/{id}`  | Obtém os detalhes de um produto específico por ID.|
-| `PUT`  | `/api/Produtos/{id}`  | Atualiza as informações de um produto existente.  |
+| `GET`  | `/api/Produtos/{id}`  | ObtÃ©m os detalhes de um produto especÃ­fico por ID.|
+| `PUT`  | `/api/Produtos/{id}`  | Atualiza as informaÃ§Ãµes de um produto existente.  |
 | `DELETE`| `/api/Produtos/{id}`| Exclui um produto (se o estoque for zero).        |
 
 
-????? **Autor:** Marcelo Moura 
+---
 
-?? **Email:** [mgmoura@gmail.com](mailto:mgmoura@gmail.com)   
-?? **Email:** [admin@allriders.com.br](mailto:admin@allriders.com.br)   
+## Autor
 
-?? **GitHub:** [github.com/marcelogmoura](https://github.com/marcelogmoura)   
+**Marcelo Moura**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelogmoura/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marcelogmoura)
