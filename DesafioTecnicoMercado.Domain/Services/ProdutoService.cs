@@ -16,7 +16,10 @@ namespace DesafioTecnicoMercado.Domain.Services
     {
         public ProdutoResponseDto CadastrarProduto(ProdutoRequestDto dto)
         {
-            
+
+            if (dto.Preco < 0)
+                throw new DomainValidationException("O preço do produto não pode ser negativo.");
+
             var categoria = categoriaRepository.GetById(dto.CategoriaId);
             if (categoria == null)
             {
@@ -61,6 +64,9 @@ namespace DesafioTecnicoMercado.Domain.Services
 
         public ProdutoResponseDto AtualizarProduto(Guid id, ProdutoRequestDto dto)
         {
+            if(dto.Preco < 0)
+                throw new DomainValidationException("O preço do produto não pode ser negativo.");
+
             var produto = produtoRepository.GetById(id);
 
             if (produto == null)
@@ -147,6 +153,9 @@ namespace DesafioTecnicoMercado.Domain.Services
 
             if (produto == null)
                 throw new DomainValidationException("Produto não encontrado. Verifique o ID informado.");
+
+            if (produto.QuantidadeEmEstoque > 0)
+                throw new DomainValidationException("Não é possível excluir produto com estoque disponível.");
 
             produtoRepository.Delete(produto);
         }
