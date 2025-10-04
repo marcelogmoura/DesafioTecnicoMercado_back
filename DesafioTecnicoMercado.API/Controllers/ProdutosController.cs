@@ -1,8 +1,6 @@
 ﻿using DesafioTecnicoMercado.Domain.Dtos.Request;
 using DesafioTecnicoMercado.Domain.Interfaces.Services;
-using DesafioTecnicoMercado.Domain.Services;
 using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioTecnicoMercado.API.Controllers
@@ -43,9 +41,22 @@ namespace DesafioTecnicoMercado.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProduto(Guid id)
+        public IActionResult UpdateProduto(Guid id, [FromBody] ProdutoRequestDto request)
         {
-            return Ok();
+            try
+            {
+                var produtoAtualizado = _produtoService.AtualizarProduto(id, request);   
+                return Ok(produtoAtualizado);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { mensagem = "Produto não encontrado." });
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { erro = "Ocorreu um erro ao atualizar o produto.", detalhes = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -65,7 +76,6 @@ namespace DesafioTecnicoMercado.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetProdutoById(Guid id)
         {
-
             try
             {                
                 var produto = _produtoService.ObterProdutoPorId(id);                             
@@ -84,7 +94,39 @@ namespace DesafioTecnicoMercado.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteProduto(Guid id)
         {
-            return Ok();
+            try
+            {
+                var produto = _produtoService.ObterProdutoPorId(id); 
+
+                if (produto == null)
+                {
+                    return NotFound(new { Message = "Produto não encontrado." });
+                }
+
+                if (produto.QuantidadeEmEstoque > 0)
+                {
+                    var mensagem = $"Não foi possível deletar '{produto.Nome}', atualmente com {produto.QuantidadeEmEstoque} unidades em estoque.";
+                    return BadRequest(new { Message = mensagem });
+                }
+
+                _produtoService.ExcluirProduto(id);
+
+                return Ok(new
+                {
+                    Message = "Produto removido com sucesso.",
+                    Produto = 
+                        produto.Id, 
+                        produto .Nome
+                });
+            }
+            catch (DomainValidationException e)
+            {
+                return NotFound(new { Message = e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { Message = "Erro inesperado ao deletar o produto." });
+            }            
         }
     }
 }

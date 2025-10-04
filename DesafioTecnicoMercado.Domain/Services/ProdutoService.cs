@@ -34,8 +34,7 @@ namespace DesafioTecnicoMercado.Domain.Services
           
             var validationResult = validator.Validate(produto);
             if (!validationResult.IsValid)
-            {
-          
+            {          
                 throw new ValidationException(validationResult.Errors);
             }
 
@@ -62,7 +61,41 @@ namespace DesafioTecnicoMercado.Domain.Services
 
         public ProdutoResponseDto AtualizarProduto(Guid id, ProdutoRequestDto dto)
         {
-            throw new NotImplementedException();
+            var produto = produtoRepository.GetById(id);
+
+            if (produto == null)
+            {
+                throw new Exception($"Produto com ID {id} não encontrado.");
+            }
+
+            var categoria = categoriaRepository.GetById(dto.CategoriaId);
+            if (categoria == null)
+            {
+                throw new DomainValidationException("Categoria não encontrada. Verifique o ID informado.");
+            }
+
+            if (produtoRepository.GetByNome(dto.Nome, id))
+                throw new DomainValidationException($"Já existe um produto com o nome '{dto.Nome}'.");
+
+
+
+            produto.Nome = dto.Nome;
+            produto.Preco = dto.Preco;
+            produto.QuantidadeEmEstoque = dto.QuantidadeEmEstoque;
+            produto.CategoriaId = dto.CategoriaId;
+
+            produtoRepository.Update(produto);
+
+
+            return new ProdutoResponseDto
+            {
+                Id = produto.Id,
+                Nome = produto.Nome ?? string.Empty,
+                Preco = produto.Preco,
+                QuantidadeEmEstoque = produto.QuantidadeEmEstoque,
+                CategoriaId = produto.CategoriaId,
+                CategoriaNome = categoriaRepository.GetById(produto.CategoriaId)?.Nome ?? "Categoria não encontrada"
+            };
         }
 
         public List<ProdutoResponseDto> ListarProdutos()
@@ -110,7 +143,12 @@ namespace DesafioTecnicoMercado.Domain.Services
 
         public void ExcluirProduto(Guid id)
         {
-            throw new NotImplementedException();
+            var produto = produtoRepository.GetById(id);
+
+            if (produto == null)
+                throw new DomainValidationException("Produto não encontrado. Verifique o ID informado.");
+
+            produtoRepository.Delete(produto);
         }
     }
 }

@@ -13,7 +13,6 @@ namespace DesafioTecnicoMercado.Infra.Contexts
         public DataContext()
         {
         }
-
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {       
