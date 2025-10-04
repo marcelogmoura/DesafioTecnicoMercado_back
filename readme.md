@@ -124,9 +124,8 @@ A seguir, a lista de endpoints disponíveis para gerenciar os produtos:
 
 ---
 
-## Autor
+👨‍💻 **Autor:** Marcelo Moura 
 
-**Marcelo Moura**
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelogmoura/)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marcelogmoura)
+📧 **Email:** [mgmoura@gmail.com](mailto:mgmoura@gmail.com)   
+🐱 **GitHub:** [github.com/marcelogmoura](https://github.com/marcelogmoura)   
+🔗 **LinkedIn:** [linkedin.com/in/marcelogmoura](https://www.linkedin.com/in/marcelogmoura/)   
